@@ -1,0 +1,31 @@
+{
+  "family": "my_node_app_task",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::123456789012:role/my-task-execution-role",
+  "taskRoleArn": "arn:aws:iam::755232036648:role/ecsTaskExecutionRoleNodeApp",
+  "containerDefinitions": [
+    {
+      "name": "my_node_app_task",
+      "image": "test-student-api-fcode:latest",
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "protocol": "tcp"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "my-log-group",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "my_node_app_task"
+        }
+      }
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512"
+}
